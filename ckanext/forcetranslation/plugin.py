@@ -10,6 +10,10 @@ class ForceTranslationPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     def configure(self, config):
         self.module_name = config.get('ckanext.forcetranslation.module')
+
+        if self.module_name is None:
+            raise Exception("Config option ckanext.forcetranslation.module must be set to use forcetranslation")
+
         self.path = config.get('ckanext.forcetranslation.path', '')
         self.domain = config.get('ckanext.forcetranslation.domain')
 
